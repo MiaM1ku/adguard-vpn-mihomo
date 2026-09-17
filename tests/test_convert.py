@@ -37,7 +37,7 @@ class ConvertTests(unittest.TestCase):
         self.assertEqual(sh["server"], "213.182.218.34")
         self.assertEqual(sh["sni"], "superbaby.tv")
         self.assertEqual(sh["name-cert-verify"], "singlecustom.live")
-        self.assertTrue(sh["name"].startswith("🇨🇳 AG-CN-上海"))
+        self.assertTrue(sh["name"].startswith("🇨🇳 CN-上海"))
         self.assertEqual(proxies[1]["server"], "157.254.131.80")
         yaml_text = provider_yaml(proxies, shanghai_injected=True)
         self.assertIn("type: trusttunnel", yaml_text)

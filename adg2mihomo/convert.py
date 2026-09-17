@@ -25,7 +25,7 @@ def _proxy_name(loc: dict, index: int, total: int, relay: bool) -> str:
     flag = flag_emoji(loc.get("country_code") or "")
     cc = (loc.get("country_code") or "XX").upper()
     city = loc.get("city_name") or loc.get("id") or "node"
-    name = f"{flag} AG-{cc}-{city}"
+    name = f"{flag} {cc}-{city}"
     if loc.get("virtual") and not loc.get("skip_virtual_label"):
         name += "-V"
     if total > 1:
