@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+data/
+dist/
+*.apk
+.adguard_*.json
+locations_*.json
+mihomo-adguard*.yaml
+nodes.json
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log

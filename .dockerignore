@@ -1,0 +1,9 @@
+.venv
+data
+dist
+*.apk
+.adguard_*.json
+.git
+__pycache__
+*.pyc
+.env

@@ -1,0 +1,14 @@
+services:
+  adg2mihomo:
+    build: .
+    ports:
+      - "8787:8787"
+    env_file:
+      - .env
+    environment:
+      ADG2MIHOMO_DATA: /data
+      ADG2MIHOMO_HOST: 0.0.0.0
+      ADG2MIHOMO_PORT: 8787
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

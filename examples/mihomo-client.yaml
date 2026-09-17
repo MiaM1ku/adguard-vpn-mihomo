@@ -1,0 +1,49 @@
+# Point mihomo at a locally running adg2mihomo API.
+# python -m adg2mihomo serve --host 127.0.0.1 --port 8787
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: true
+
+dns:
+  enable: true
+  enhanced-mode: fake-ip
+  nameserver:
+    - https://dns.google/dns-query
+
+proxy-providers:
+  adguard:
+    type: http
+    url: "http://127.0.0.1:8787/proxies.yaml"
+    path: ./proxy_providers/adguard.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true
+      expected-status: 204
+    # header:
+    #   Authorization:
+    #     - "Bearer change-me"
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    use:
+      - adguard
+    proxies:
+      - AUTO
+      - DIRECT
+  - name: AUTO
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    use:
+      - adguard
+
+rules:
+  - GEOIP,private,DIRECT,no-resolve
+  - MATCH,PROXY
